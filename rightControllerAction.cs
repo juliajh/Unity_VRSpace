@@ -43,16 +43,10 @@ public class rightControllerAction : MonoBehaviour
             if (!spaceRadialMenu.activeSelf) //켜기
             {
                 spaceRadialMenu.SetActive(true);
-                multiplePanel.SetActive(false);
-                leftToBezierRenderer();
-
             }
             else  //끄기
             {
                 spaceRadialMenu.SetActive(false);
-                multiplePanel.SetActive(false);
-                leftToBezierRenderer();
-
             }
         }
         else
@@ -81,6 +75,7 @@ public class rightControllerAction : MonoBehaviour
         if (!multiplePanel.activeSelf)  //켜기
         {
             multiplePanel.SetActive(true);
+            spaceRadialMenu.SetActive(false);
             VRTK_BasePointerRenderer straightRenderer = leftController.transform.GetChild(0).GetComponent<VRTK_StraightPointerRenderer>();
             leftController.GetComponent<VRTK_Pointer>().pointerRenderer = straightRenderer;
             leftController.GetComponent<VRTK_Pointer>().enableTeleport = false;
