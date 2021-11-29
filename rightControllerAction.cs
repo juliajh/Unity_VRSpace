@@ -12,16 +12,28 @@ public class rightControllerAction : MonoBehaviour
     GameObject spaceShip;
 
     [SerializeField]
+    private GameObject leftController;
+
+
+    //radial menu
+    [SerializeField]
     private GameObject spaceRadialMenu;
 
     [SerializeField]
     private GameObject spaceShipRadialMenu;
 
+
+
+    //radial menu panels
     [SerializeField]
     private GameObject multiplePanel;
 
     [SerializeField]
-    private GameObject leftController;
+    private GameObject spaceShipHelpPanel;
+
+    [SerializeField]
+    private GameObject spaceHelpPanel;
+
 
     public float spaceshipSpeed;
 
@@ -34,6 +46,8 @@ public class rightControllerAction : MonoBehaviour
         spaceRadialMenu.SetActive(false);
         spaceShipRadialMenu.SetActive(false);
         multiplePanel.SetActive(false);
+        spaceHelpPanel.SetActive(false);
+        spaceShipHelpPanel.SetActive(false);
     }
 
     public void touchPadClick()
@@ -43,10 +57,16 @@ public class rightControllerAction : MonoBehaviour
             if (!spaceRadialMenu.activeSelf) //켜기
             {
                 spaceRadialMenu.SetActive(true);
+                multiplePanel.SetActive(false);
+                spaceHelpPanel.SetActive(false);
+                spaceShipHelpPanel.SetActive(false);
             }
             else  //끄기
             {
                 spaceRadialMenu.SetActive(false);
+                multiplePanel.SetActive(false);
+                spaceHelpPanel.SetActive(false);
+                spaceShipHelpPanel.SetActive(false);
             }
         }
         else
@@ -55,11 +75,15 @@ public class rightControllerAction : MonoBehaviour
             {
                 spaceShipRadialMenu.SetActive(true);
                 multiplePanel.SetActive(false);
+                spaceHelpPanel.SetActive(false);
+                spaceShipHelpPanel.SetActive(false);
             }
             else
             {
                 spaceShipRadialMenu.SetActive(false);
                 multiplePanel.SetActive(false);
+                spaceHelpPanel.SetActive(false);
+                spaceShipHelpPanel.SetActive(false);
             }
         }
     }
@@ -102,6 +126,22 @@ public class rightControllerAction : MonoBehaviour
         VRTK_BasePointerRenderer bezierRenderer = leftController.transform.GetChild(1).GetComponent<VRTK_BezierPointerRenderer>();
         leftController.GetComponent<VRTK_Pointer>().pointerRenderer = bezierRenderer;
         leftController.GetComponent<VRTK_Pointer>().enableTeleport = true;
+    }
+
+    public void spaceHelpBtnClick()
+    {
+        if (!spaceHelpPanel.activeSelf)
+            spaceHelpPanel.SetActive(true);
+        else
+            spaceHelpPanel.SetActive(false);
+    }
+
+    public void spaceShipHelpBtnClick()
+    {
+        if (!spaceShipHelpPanel.activeSelf)
+            spaceShipHelpPanel.SetActive(true);
+        else
+            spaceShipHelpPanel.SetActive(false);
     }
 
 }

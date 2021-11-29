@@ -155,18 +155,18 @@ public class tutorialOnMain : MonoBehaviour
                     case 10: //공전, 자전 판넬 끄기
                         if (!typing)
                         {
+                            radialPressed = false;
                             this.gameObject.GetComponent<controllerGuide>().offLTriggerbutton();
                             StartCoroutine(Typing(alarmPanel.transform.GetChild(0).GetComponent<Text>(), listofTutorial[indexOfTutorial], speedofTyping));
                             typing = true;
                         }
                         break;
                     case 11: //우주선 안으로 이동하는 방법 설명 
-                        if (multiPressed&&radialPressed)
+                        if (radialPressed)
                         {
                             if (!typing)
                             {
                                 this.gameObject.GetComponent<controllerGuide>().offRTouchPadbutton();
-                                multiPressed = false;
                                 radialPressed = false;
                                 this.gameObject.GetComponent<controllerGuide>().XbuttonLight();
                                 StartCoroutine(Typing(alarmPanel.transform.GetChild(0).GetComponent<Text>(), listofTutorial[indexOfTutorial], speedofTyping));
@@ -254,13 +254,6 @@ public class tutorialOnMain : MonoBehaviour
                             }
                         }
                         break;
-                    case 19:
-                        if (!typing)
-                        {
-                            StartCoroutine(Typing(alarmPanel.transform.GetChild(0).GetComponent<Text>(), listofTutorial[indexOfTutorial], speedofTyping));
-                            typing = true;
-                        }
-                        break;
                     default:
                         alarmPanel.GetComponent<Animator>().SetBool("alarming", false);
                         tutorialOver = true;
@@ -345,6 +338,7 @@ public class tutorialOnMain : MonoBehaviour
                     this.gameObject.GetComponent<controllerGuide>().offBbutton();
                     alarmPanel.transform.GetChild(1).gameObject.SetActive(false);
                     rightControllerAction.ok = -1;
+                    alarmAni.SetBool("alarming", false);
                     typing = false;
                     if (touring)
                     {
@@ -384,24 +378,23 @@ public class tutorialOnMain : MonoBehaviour
     {
         listofTutorial.Add("안녕하세요 VR Space에 오신 여러분을 환영합니다.");
         listofTutorial.Add("현재 이곳은 실제 태양계를 반영한 우주입니다.");
-        listofTutorial.Add("컨트롤러를 이용하여 우주를 자유롭게 이동할 수도 있고");
-        listofTutorial.Add("행성들에 더 가까이 가고싶다면 우주선을 타고 행성으로 바로 이동하세요.");
-        listofTutorial.Add("이어서 컨트롤러 사용법에 대해 말씀드리겠습니다.");
-        listofTutorial.Add("오른쪽 컨트롤러의 트리거 버튼을 클릭하여 이동을 할 수 있습니다.");
-        listofTutorial.Add("오른쪽 컨트롤러의 조종 레버를 누르면 메뉴판이 뜹니다.\n조종 레버를 돌려서 누르면 메뉴를 선택할 수 있습니다.");
-        listofTutorial.Add("윗 버튼부터 시계 방향으로 게임 종료 버튼, 도움말 버튼, 공전/자전 배속 조절 버튼입니다.");
+        listofTutorial.Add("컨트롤러를 이용하여 우주를 자유롭게 탐사해보세요.");
+        listofTutorial.Add("양손을 들어서 컨트롤러를 확인해보세요.");
+        listofTutorial.Add("튜토리얼에 따라 흰 테두리 버튼을 누르면 됩니다.");
+        listofTutorial.Add("양손 컨트롤러의 트리거 버튼을 클릭하여 이동을 할 수 있습니다.");
+        listofTutorial.Add("오른손 컨트롤러의 게임 스틱를 누르면 메뉴판이 뜹니다.");
+        listofTutorial.Add("게임 스틱를 돌려서 누르면 메뉴를 선택할 수 있습니다.\n시계 방향으로 게임종료 버튼, 도움말 버튼, 공전/자전 배속 조절 버튼입니다.");
         listofTutorial.Add("공전/자전 배속 조절 버튼을 눌러보세요.");
-        listofTutorial.Add("왼쪽 컨트롤러의 트리거 버튼을 이용하여 태양계의 공전과 자전을 조절할 수 있습니다.\n(실제: 1배속)");
-        listofTutorial.Add("메뉴판의 버튼을 다시 눌러서 panel을 끌 수 있습니다.\n(조종 레버 다시 눌러 메뉴판 끄기)");
-        listofTutorial.Add("이제 왼쪽 컨트롤러의 X버튼을 클릭하여 우주선으로 이동해보겠습니다.");
-        listofTutorial.Add("우주선 안에서도 마찬가지로 조종 레버를 눌러 메뉴판을 볼 수 있습니다.\n우주선 밖에서와는 달리 투어 버튼이 있습니다.");
-        listofTutorial.Add("투어는 투어 가이드에 따라 태양계를 투어하는 콘텐츠입니다.\n(조종레버를 다시 눌러 메뉴판 끄기)");
+        listofTutorial.Add("왼손 컨트롤러의 트리거 버튼을 눌러 태양계의 공전과 자전을 조절할 수 있습니다.\n(실제: 1배속)");
+        listofTutorial.Add("게임 스틱을 다시 눌러서 panel을 끌 수 있습니다.");
+        listofTutorial.Add("이제 왼손 컨트롤러의 X버튼을 클릭하여 우주선으로 이동해보겠습니다.");
+        listofTutorial.Add("조종 레버를 눌러 메뉴판을 볼 수 있습니다.\n우주선 밖에서와는 달리 투어 버튼이 있습니다.");
+        listofTutorial.Add("투어는 투어 가이드에 따라 태양계를 투어하는 콘텐츠입니다.\n게임 스틱을 다시 눌러서 panel을 끌 수 있습니다.");
         listofTutorial.Add("다음으로 우주선 조종 방법입니다.\n양손의 게임 스틱을 이용하여 우주선을 조종해보세요.");
         listofTutorial.Add("위의 시계는 각 행성에서의 시간의 흐름을 나타냅니다.\n(y버튼 on/off)");
-        listofTutorial.Add("앞에 보이는 판넬의 행성을 클릭하여 행성으로 바로 이동할 수도 있습니다.");
-        listofTutorial.Add("오른쪽 포인터를 이용하여 원하는 행성을 클릭해보세요.");
-        listofTutorial.Add("이제부터는 자유롭게 탐사를 해보세요.");
-        listofTutorial.Add("우주선을 나가서, 우주선 안에서 자유롭게 탐사를 할 수 있어요.");
+        listofTutorial.Add("앞에 보이는 판넬의 행성을 클릭하여 행성으로 바로 이동할 수 있습니다.");
+        listofTutorial.Add("양손 트리거 버튼을 눌러 원하는 행성을 클릭해보세요.");
+        listofTutorial.Add("컨트롤러 사용법 설명을 마치겠습니다.");
         //listofTutorial.Add("");
         //listofTutorial.Add("");
 
@@ -431,7 +424,7 @@ public class tutorialOnMain : MonoBehaviour
         {
             case 6:
             case 7:
-            case 10:
+            case 9:
             case 11:
             case 12:
             case 13:
@@ -439,12 +432,11 @@ public class tutorialOnMain : MonoBehaviour
                 radialPressed = true;
                 break; ;
         }
-
     } 
 
     public void multiplepressed()
     {
-        if (indexOfTutorial >= 8 && indexOfTutorial <= 11)
+        if (indexOfTutorial == 8 || indexOfTutorial == 9)
             multiPressed = true;
     }
 
@@ -504,31 +496,6 @@ public class tutorialOnMain : MonoBehaviour
             touring = true;
             this.gameObject.GetComponent<controllerGuide>().AbuttonLight();
             this.gameObject.GetComponent<controllerGuide>().BbuttonLight();
-        }
-    }
-
-    public void tutorialClick()
-    {
-        tutorialOver = false;
-        alarmAni.Play("alarmStart");
-        alarmAni.SetBool("alarming", true);
-        if(leftControllerAction.inSpaceship)
-        {
-            indexOfTutorial = 12;
-            xButtonpressed = true;
-            yButtonpressed = false;
-            radialPressed = false;
-            planetButtons.planetNum = -1;
-        }
-        else
-        {
-            yButtonpressed = false;
-            xButtonpressed = false;
-            rTriggerbuttonpressed = false;
-            radialPressed = false;
-            multiPressed = false;
-            indexOfTutorial = 0;
-            planetButtons.planetNum = -1;
         }
     }
 

@@ -5,26 +5,26 @@ using UnityEngine;
 public class onPlanetRightController : MonoBehaviour
 {
     [SerializeField]
-    private GameObject planetPanel;
+    private GameObject planetHelpPanel;
 
     [SerializeField]
     private GameObject planetRadialMenu;
 
     private void Start()
     {
-        planetPanel.SetActive(false);
+        planetHelpPanel.SetActive(false);
         planetRadialMenu.SetActive(false);
     }
 
-    public void planetPanelClick()
+    public void planetHelpBtnClick()
     {
-        if (!planetPanel.activeSelf)  //켜기
+        if (!planetHelpPanel.activeSelf)  //켜기
         {
-            planetPanel.SetActive(true);
+            planetHelpPanel.SetActive(true);
         }
         else
         {
-            planetPanel.SetActive(false);
+            planetHelpPanel.SetActive(false);
         }
     }
 
@@ -39,13 +39,13 @@ public class onPlanetRightController : MonoBehaviour
         if (!planetRadialMenu.activeSelf) //켜기
         {
             planetRadialMenu.SetActive(true);
-            planetPanel.SetActive(false);
+            planetHelpPanel.SetActive(false);
 
         }
         else  //끄기
         {
             planetRadialMenu.SetActive(false);
-            planetPanel.SetActive(false);
+            planetHelpPanel.SetActive(false);
 
         }
     }

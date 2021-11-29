@@ -83,16 +83,19 @@ public class onPlanetLeftController : MonoBehaviour
                 VRTK_BasePointerRenderer renderer = rightController.transform.GetChild(1).GetComponent<VRTK_BezierPointerRenderer>();
                 rightController.GetComponent<VRTK_Pointer>().pointerRenderer = renderer;
                 rightController.GetComponent<VRTK_Pointer>().enableTeleport = true;
-                if(!tutorialOfGrip)
+                if (!tutorialOfGrip)
                 {
                     this.gameObject.GetComponent<controllerGuide>().RGripbuttonLight();
                     alarmPanel.GetComponent<Animator>().SetBool("alarming", true);
                     if (sceneName == "MarsScene")
-                        StartCoroutine(Typing(alarmPanel.transform.GetChild(0).GetComponent<Text>(), "오른쪽 controller의 grip버튼을 눌러서 물건들을 잡아보세요.\n화성은 중력이 3.721m/s²입니다.", speedofTyping));
+                    {
+                        StartCoroutine(Typing(alarmPanel.transform.GetChild(0).GetComponent<Text>(), "오른쪽 controller의 grip버튼을 눌러서 물건들을 잡아보세요.\n화성은 중력이 3.721m/s²입니다.", speedofTyping));  
+                    }
                     else if (sceneName == "MoonScene")
+                    {
                         StartCoroutine(Typing(alarmPanel.transform.GetChild(0).GetComponent<Text>(), "오른쪽 controller의 grip버튼을 눌러서 물건들을 잡아보세요.\n달은 중력이 1.62m/s²입니다. ", speedofTyping));
+                    }
                 }
-
             }
         }
     }
